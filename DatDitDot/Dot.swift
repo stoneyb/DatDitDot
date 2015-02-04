@@ -3,37 +3,35 @@ import SpriteKit
 class Dot: BaseD {
     
     let eyes = SKNode()
-    let rightEye: SKShapeNode
+    let rightEye: SKSpriteNode
     let leftEye: SKSpriteNode
     let eyeBlinkDelay: NSTimeInterval
     let eyeMoveDelay: NSTimeInterval
-    let mouth: SKShapeNode
+    let mouth: SKSpriteNode
     
     init(sideLength: CGFloat, row: Int, col: Int, color: PieceColor, facialFeatures: Bool) {
         
         let circleTexture = SKTexture(imageNamed: "circle")
-        let squareTexture = SKTexture(imageNamed: "square_eye")
+        let squareEyeTexture = SKTexture(imageNamed: "square_eye")
+        let squareTexture = SKTexture(imageNamed: "mouth")
         let background = SKSpriteNode(texture: circleTexture, size: CGSize(width: sideLength, height: sideLength))
         
         let eyeSize: CGFloat = max(sideLength / 12, 4)
-        //leftEye = SKShapeNode(rect: CGRect(x: -eyeSize / 4, y: 0, width: eyeSize, height: eyeSize), cornerRadius: 1)
-        leftEye = SKSpriteNode(texture: squareTexture, size: CGSize(width: 8, height: 8))
-        rightEye = SKShapeNode(rect: CGRect(x: -eyeSize / 4, y: 0, width: eyeSize, height: eyeSize), cornerRadius: 1)
+        leftEye = SKSpriteNode(texture: squareEyeTexture, size: CGSize(width: 7, height: 7))
+        rightEye = SKSpriteNode(texture: squareEyeTexture, size: CGSize(width: 7, height: 7))
         eyeBlinkDelay = NSTimeInterval(random(Range(start: 10, end: 20)))
         eyeMoveDelay = NSTimeInterval(random(Range(start: 2, end: 5)))
-        mouth = SKShapeNode(rect: CGRect(x: -sideLength / 8, y: -sideLength / 4, width: sideLength / 4, height: eyeSize / 8), cornerRadius: 1)
+        mouth = SKSpriteNode(texture: squareTexture, size: CGSize(width: 15, height: 4))
 
         if facialFeatures {
-//            leftEye.strokeColor = CustomColors.darkGray()
-//            leftEye.fillColor = CustomColors.darkGray()
             leftEye.colorBlendFactor = 1
             leftEye.color = CustomColors.darkGray()
             leftEye.position = CGPoint(x: -sideLength / 4, y: 0)
             leftEye.zPosition = 1
             eyes.addChild(leftEye)
             
-            rightEye.strokeColor = CustomColors.darkGray()
-            rightEye.fillColor = CustomColors.darkGray()
+            rightEye.colorBlendFactor = 1
+            rightEye.color = CustomColors.darkGray()
             rightEye.position = CGPoint(x: sideLength / 4, y: 0)
             rightEye.zPosition = 1
             eyes.addChild(rightEye)
@@ -41,8 +39,9 @@ class Dot: BaseD {
             eyes.zPosition = 1
             eyes.position = CGPoint(x: 0, y: sideLength / 6)
             
-            mouth.strokeColor = CustomColors.darkGray()
-            mouth.fillColor = CustomColors.darkGray()
+            mouth.colorBlendFactor = 1
+            mouth.color = CustomColors.darkGray()
+            mouth.position = CGPoint(x: 0, y: -10)
             mouth.zPosition = 1
         }
 
