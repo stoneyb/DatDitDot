@@ -4,40 +4,46 @@ class Dot: BaseD {
     
     let eyes = SKNode()
     let rightEye: SKShapeNode
-    let leftEye: SKShapeNode
+    let leftEye: SKSpriteNode
     let eyeBlinkDelay: NSTimeInterval
     let eyeMoveDelay: NSTimeInterval
     let mouth: SKShapeNode
     
     init(sideLength: CGFloat, row: Int, col: Int, color: PieceColor, facialFeatures: Bool) {
         
-        let background = SKShapeNode(circleOfRadius: sideLength)
+        let circleTexture = SKTexture(imageNamed: "circle")
+        let squareTexture = SKTexture(imageNamed: "square_eye")
+        let background = SKSpriteNode(texture: circleTexture, size: CGSize(width: sideLength, height: sideLength))
         
-        let eyeSize = max(sideLength / 6, 4)
-        leftEye = SKShapeNode(rect: CGRect(x: -eyeSize / 2, y: 0, width: eyeSize, height: eyeSize), cornerRadius: 1)
-        rightEye = SKShapeNode(rect: CGRect(x: -eyeSize / 2, y: 0, width: eyeSize, height: eyeSize), cornerRadius: 1)
+        let eyeSize: CGFloat = max(sideLength / 12, 4)
+        //leftEye = SKShapeNode(rect: CGRect(x: -eyeSize / 4, y: 0, width: eyeSize, height: eyeSize), cornerRadius: 1)
+        leftEye = SKSpriteNode(texture: squareTexture, size: CGSize(width: 8, height: 8))
+        rightEye = SKShapeNode(rect: CGRect(x: -eyeSize / 4, y: 0, width: eyeSize, height: eyeSize), cornerRadius: 1)
         eyeBlinkDelay = NSTimeInterval(random(Range(start: 10, end: 20)))
         eyeMoveDelay = NSTimeInterval(random(Range(start: 2, end: 5)))
-        mouth = SKShapeNode(rect: CGRect(x: -sideLength / 4, y: -sideLength / 2, width: sideLength / 2, height: eyeSize / 4), cornerRadius: 1)
+        mouth = SKShapeNode(rect: CGRect(x: -sideLength / 8, y: -sideLength / 4, width: sideLength / 4, height: eyeSize / 8), cornerRadius: 1)
 
         if facialFeatures {
-            leftEye.strokeColor = CustomColors.darkGray()
-            leftEye.fillColor = CustomColors.darkGray()
-            leftEye.position = CGPoint(x: -sideLength / 2, y: 0)
+//            leftEye.strokeColor = CustomColors.darkGray()
+//            leftEye.fillColor = CustomColors.darkGray()
+            leftEye.colorBlendFactor = 1
+            leftEye.color = CustomColors.darkGray()
+            leftEye.position = CGPoint(x: -sideLength / 4, y: 0)
             leftEye.zPosition = 1
             eyes.addChild(leftEye)
             
             rightEye.strokeColor = CustomColors.darkGray()
             rightEye.fillColor = CustomColors.darkGray()
-            rightEye.position = CGPoint(x: sideLength / 2, y: 0)
+            rightEye.position = CGPoint(x: sideLength / 4, y: 0)
             rightEye.zPosition = 1
             eyes.addChild(rightEye)
             
-            eyes.zPosition = 100
-            eyes.position = CGPoint(x: 0, y: sideLength / 3)
+            eyes.zPosition = 1
+            eyes.position = CGPoint(x: 0, y: sideLength / 6)
             
             mouth.strokeColor = CustomColors.darkGray()
             mouth.fillColor = CustomColors.darkGray()
+            mouth.zPosition = 1
         }
 
         
@@ -100,7 +106,7 @@ class Dot: BaseD {
     
     class func CreateDummyDot(sideLength: CGFloat, color: PieceColor, facialFeatures: Bool) -> Dot {
         let dot = Dot(sideLength: sideLength, row: -1, col: -1, color: color, facialFeatures: facialFeatures)
-        dot.background.strokeColor = SKColorForPieceColorEnum(color)
+        dot.background.color = SKColorForPieceColorEnum(color)
         dot.name = "DummyDot"
         return dot
     }

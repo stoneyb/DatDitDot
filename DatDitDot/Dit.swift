@@ -8,31 +8,19 @@ class Dit: BaseD {
     let eyeMoveDelay: NSTimeInterval
     
     init(sideLength: CGFloat, row: Int, col: Int, color: PieceColor, facialFeatures: Bool) {
-               
-        let actualSideLength = sideLength + 2
-        let radius:CGFloat = actualSideLength / 5;
-        let path = CGPathCreateMutable();
-        let center = CGPoint(x: actualSideLength, y: actualSideLength * 2)
-        let bottomLeft = CGPoint(x: 0, y: 0)
-        let bottomRight = CGPoint(x: actualSideLength * 2, y: 0)
-        CGPathMoveToPoint(path, nil, (center.x + bottomLeft.x) / 2, (center.y + bottomLeft.y) / 2);
-        CGPathAddArcToPoint(path, nil, bottomLeft.x, bottomLeft.y, bottomRight.x, bottomRight.y, radius);
-        CGPathAddArcToPoint(path, nil, bottomRight.x, bottomRight.y, center.x, center.y, radius);
-        CGPathAddArcToPoint(path, nil, center.x, center.y, bottomLeft.x, bottomLeft.y, radius);
-        CGPathCloseSubpath(path);
+        let t = SKTexture(imageNamed: "triangle")
+        let background = SKSpriteNode(texture: t, size: CGSize(width: sideLength, height: sideLength))
         
-        let background = SKShapeNode(path: path, centered: true)
-        
-        let eyeSize = sideLength / 10
+        let eyeSize = sideLength / 20
         eye = SKShapeNode(circleOfRadius: eyeSize)
         eyeBlinkDelay = NSTimeInterval(random(Range(start: 10, end: 20)))
         eyeMoveDelay = NSTimeInterval(random(Range(start: 2, end: 5)))
-        mouth = SKShapeNode(rect: CGRect(x: -sideLength / 4, y: -sideLength / 2, width: sideLength / 2, height: eyeSize / 2), cornerRadius: 1)
+        mouth = SKShapeNode(rect: CGRect(x: -sideLength / 8, y: -sideLength / 4, width: sideLength / 4, height: eyeSize / 4), cornerRadius: 1)
         
         if facialFeatures {
             eye.fillColor = CustomColors.darkGray()
             eye.strokeColor = CustomColors.darkGray()
-            eye.position = CGPoint(x: 0, y: actualSideLength / 3)
+            eye.position = CGPoint(x: 0, y: sideLength / 6)
             eye.zPosition = 100
             
 
@@ -93,7 +81,7 @@ class Dit: BaseD {
     
     class func CreateDummyDit(sideLength: CGFloat, color: PieceColor, facialFeatures: Bool) -> Dit {
         let dit = Dit(sideLength: sideLength, row: -1, col: -1, color: color, facialFeatures: facialFeatures)
-        dit.background.strokeColor = SKColorForPieceColorEnum(color)
+        dit.background.color = SKColorForPieceColorEnum(color)
         dit.name = "DummyDit"
         return dit
     }

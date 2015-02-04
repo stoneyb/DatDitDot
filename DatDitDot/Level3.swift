@@ -11,7 +11,7 @@ class Level3: Level {
         // Setup board
         piecesHigh = 3
         piecesWide = 3
-        halfSideLength = 20.0
+        halfSideLength = 40.0
         let facial = true
         let row2 = [Dit(sideLength: halfSideLength, row: 2, col: 0, color: PieceColor.Red, facialFeatures: facial),
                     Dat(sideLength: halfSideLength, row: 2, col: 1, color: PieceColor.Red, facialFeatures: facial),

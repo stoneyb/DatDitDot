@@ -385,7 +385,7 @@ class GameScene: SKScene {
         createObjectiveBar(level.levelObjectives.objectives)
         updateObjectives()
         let piecesWide = level.piecesWide
-        let pieceWidth: CGFloat = level.halfSideLength * 2
+        let pieceWidth: CGFloat = level.halfSideLength
         let pieceMargin: CGFloat = 15.0
         let boardWidth: CGFloat = CGFloat(piecesWide) * pieceWidth + (pieceMargin * (CGFloat(piecesWide) - 1)) + 15
         let boardHeight: CGFloat = boardWidth

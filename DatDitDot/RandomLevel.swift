@@ -10,7 +10,7 @@ class RandomLevel: Level {
         // Setup board
         piecesHigh = Int(random(Range(start: 3, end: 6)))
         piecesWide = piecesHigh
-        halfSideLength = 20.0
+        halfSideLength = 40.0
         for row in 0..<piecesWide {
             var bRow = [BaseD]()
             for col in 0..<piecesHigh {

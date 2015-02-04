@@ -5,7 +5,7 @@ class ObjectiveLabel: SKNode {
     let number: Int
     let color: PieceColor
     let type: PieceType
-    let pieceWidth: CGFloat = 5.0
+    let pieceWidth: CGFloat = 10.0
     var completed: Bool = false
     let strikeThrough: SKShapeNode
     

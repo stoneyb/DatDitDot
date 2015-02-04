@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E2125E681A81A81B00A940E1 /* StaticShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2125E671A81A81B00A940E1 /* StaticShapeNode.swift */; };
+		E2125E721A81CD3B00A940E1 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E711A81CD3B00A940E1 /* square.png */; };
+		E2125E741A81CFE300A940E1 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E731A81CFE300A940E1 /* circle.png */; };
+		E2125E761A81D14600A940E1 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E751A81D14600A940E1 /* triangle.png */; };
+		E2125E841A82902E00A940E1 /* square_eye.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E831A82902E00A940E1 /* square_eye.png */; };
 		E21A4EE81A76E07D00398442 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4EE71A76E07D00398442 /* AppDelegate.swift */; };
 		E21A4EEC1A76E07E00398442 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4EEB1A76E07E00398442 /* GameScene.swift */; };
 		E21A4EEE1A76E07E00398442 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4EED1A76E07E00398442 /* GameViewController.swift */; };
@@ -70,6 +74,10 @@
 
 /* Begin PBXFileReference section */
 		E2125E671A81A81B00A940E1 /* StaticShapeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticShapeNode.swift; sourceTree = "<group>"; };
+		E2125E711A81CD3B00A940E1 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		E2125E731A81CFE300A940E1 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		E2125E751A81D14600A940E1 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
+		E2125E831A82902E00A940E1 /* square_eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_eye.png; sourceTree = "<group>"; };
 		E21A4EE21A76E07D00398442 /* DatDitDot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatDitDot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21A4EE61A76E07D00398442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21A4EE71A76E07D00398442 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -241,6 +249,10 @@
 			isa = PBXGroup;
 			children = (
 				E235B3851A776C7B009EFA74 /* restart2.png */,
+				E2125E731A81CFE300A940E1 /* circle.png */,
+				E2125E751A81D14600A940E1 /* triangle.png */,
+				E2125E711A81CD3B00A940E1 /* square.png */,
+				E2125E831A82902E00A940E1 /* square_eye.png */,
 				E2F7BB401A818E6900DA377C /* refresh.png */,
 			);
 			name = Images;
@@ -383,10 +395,14 @@
 				E235B3861A776C7B009EFA74 /* restart2.png in Resources */,
 				E2EC49BF1A79B6FD00C06522 /* Quicksand_Book.otf in Resources */,
 				E2EC49E01A7ABFA800C06522 /* LICENSE.txt in Resources */,
+				E2125E721A81CD3B00A940E1 /* square.png in Resources */,
 				E21A4EF61A76E07E00398442 /* LaunchScreen.xib in Resources */,
 				E2EC49C11A79B78700C06522 /* Quicksand_Bold.otf in Resources */,
+				E2125E761A81D14600A940E1 /* triangle.png in Resources */,
 				E21A4EF31A76E07E00398442 /* Images.xcassets in Resources */,
+				E2125E841A82902E00A940E1 /* square_eye.png in Resources */,
 				E21A4EF11A76E07E00398442 /* Main.storyboard in Resources */,
+				E2125E741A81CFE300A940E1 /* circle.png in Resources */,
 				E2F7BB411A818E6900DA377C /* refresh.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,29 +12,29 @@ class Dat: BaseD {
     
     init(sideLength: CGFloat, row: Int, col: Int, color: PieceColor, facialFeatures: Bool) {
        
-        let actualSideLength = sideLength * 2
-        let background = SKShapeNode(rect: CGRect(x: -sideLength, y: -sideLength, width: actualSideLength, height: actualSideLength), cornerRadius: sideLength / 3)
+        let t = SKTexture(imageNamed: "square")
+        let background = SKSpriteNode(texture: t, size: CGSize(width: sideLength, height: sideLength))
         
-        let eyeSize = sideLength / 8
+        let eyeSize = sideLength / 16
         
         leftEye = SKShapeNode(circleOfRadius: eyeSize)
         rightEye = SKShapeNode(circleOfRadius: eyeSize)
         eyeBlinkDelay = NSTimeInterval(random(Range(start: 10, end: 20)))
         eyeMoveDelay = NSTimeInterval(random(Range(start: 2, end: 5)))
-        mouth = SKShapeNode(rect: CGRect(x: -sideLength / 4, y: -sideLength / 2, width: sideLength / 2, height: eyeSize / 2), cornerRadius: 1)
+        mouth = SKShapeNode(rect: CGRect(x: -sideLength / 8, y: -sideLength / 4, width: sideLength / 4, height: eyeSize / 4), cornerRadius: 1)
         if facialFeatures {
             leftEye.strokeColor = CustomColors.darkGray()
             leftEye.fillColor = CustomColors.darkGray()
-            leftEye.position = CGPoint(x: -sideLength / 2, y: 0)
+            leftEye.position = CGPoint(x: -sideLength / 4, y: 0)
             eyes.addChild(leftEye)
             
             rightEye.strokeColor = CustomColors.darkGray()
             rightEye.fillColor = CustomColors.darkGray()
-            rightEye.position = CGPoint(x: sideLength / 2, y: 0)
+            rightEye.position = CGPoint(x: sideLength / 4, y: 0)
             eyes.addChild(rightEye)
             
             eyes.zPosition = 1
-            eyes.position = CGPoint(x: 0, y: actualSideLength / 3)
+            eyes.position = CGPoint(x: 0, y: sideLength / 6)
             
             mouth.strokeColor = CustomColors.darkGray()
             mouth.fillColor = CustomColors.darkGray()
@@ -97,7 +97,7 @@ class Dat: BaseD {
     
     class func CreateDummyDat(sideLength: CGFloat, color: PieceColor, facialFeatures: Bool) -> Dat {
         let dat = Dat(sideLength: sideLength, row: -1, col: -1, color: color, facialFeatures: facialFeatures)
-        dat.background.strokeColor = SKColorForPieceColorEnum(color)
+        dat.background.color = SKColorForPieceColorEnum(color)
         dat.name = "DummyDat"
         return dat
     }
