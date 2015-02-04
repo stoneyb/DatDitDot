@@ -1,9 +1,15 @@
-//
-//  Position.swift
-//  DatDitDot
-//
-//  Created by Tom Stoneberg on 26/01/2015.
-//  Copyright (c) 2015 Tom Stoneberg. All rights reserved.
-//
-
 import Foundation
+
+class Position: Printable {
+    let col: Int
+    let row: Int
+    
+    init(row: Int, col: Int) {
+        self.row = row
+        self.col = col
+    }
+    
+    var description: String {
+        return NSString(format: "Position row: %d, col: %d", self.row, self.col)
+    }
+}
