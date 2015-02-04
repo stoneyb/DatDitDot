@@ -1,6 +1,9 @@
 import Foundation
 import SpriteKit
 
+// CONSTANTS
+let SHADOW_OFFSET = CGPoint(x: 5, y: -4)
+
 enum GameState: Int {
     case Running = 0
     case Paused = 1

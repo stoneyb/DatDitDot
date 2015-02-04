@@ -13,7 +13,7 @@ class Dot: BaseD {
         
         let circleTexture = SKTexture(imageNamed: "circle")
         let squareEyeTexture = SKTexture(imageNamed: "square_eye")
-        let squareTexture = SKTexture(imageNamed: "mouth")
+        let mouthTexture = SKTexture(imageNamed: "mouth")
         let background = SKSpriteNode(texture: circleTexture, size: CGSize(width: sideLength, height: sideLength))
         
         let eyeSize: CGFloat = max(sideLength / 12, 4)
@@ -21,7 +21,7 @@ class Dot: BaseD {
         rightEye = SKSpriteNode(texture: squareEyeTexture, size: CGSize(width: 7, height: 7))
         eyeBlinkDelay = NSTimeInterval(random(Range(start: 10, end: 20)))
         eyeMoveDelay = NSTimeInterval(random(Range(start: 2, end: 5)))
-        mouth = SKSpriteNode(texture: squareTexture, size: CGSize(width: 15, height: 4))
+        mouth = SKSpriteNode(texture: mouthTexture, size: CGSize(width: 15, height: 4))
 
         if facialFeatures {
             leftEye.colorBlendFactor = 1

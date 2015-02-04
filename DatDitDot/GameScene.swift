@@ -21,7 +21,7 @@ class GameScene: SKScene {
     let topHudHeight: CGFloat
     
     
-    let EXPERIMENT_MODE = true
+    let EXPERIMENT_MODE = false
     
     override init(size: CGSize) {
         
@@ -73,9 +73,10 @@ class GameScene: SKScene {
         
         // Needs label background
         let labelBackgroundWidth = topHudElementWidth * 2
-        let needsLabelBackground = SKShapeNode(rectOfSize: CGSize(width: labelBackgroundWidth, height: bannerBackgroundHeight), cornerRadius: backgroundCornerRadius)
-        needsLabelBackground.strokeColor = SKColorForPieceColorEnum(PieceColor.Blue)
-        needsLabelBackground.fillColor = SKColorForPieceColorEnum(PieceColor.Blue)
+        let bannerTexture = SKTexture(imageNamed: "large_round_rect")
+        let needsLabelBackground = SKSpriteNode(texture: bannerTexture, size: CGSize(width: labelBackgroundWidth, height: bannerBackgroundHeight))
+        needsLabelBackground.colorBlendFactor = 1
+        needsLabelBackground.color = BANNER_HEADER_COLOR
         needsLabelBackground.position = CGPoint(x: size.width / 2, y: size.height)
         needsLabelBackground.zPosition = 5
         needsBar.addChild(needsLabelBackground)
@@ -93,17 +94,17 @@ class GameScene: SKScene {
         
         // Needs bar
         let needsBarBackground = SKShapeNode(rectOfSize: CGSize(width: topHudElementWidth * 3 - 20, height: mainBackgroundHeight), cornerRadius: backgroundCornerRadius)
-        needsBarBackground.strokeColor = CustomColors.lightBlue()
-        needsBarBackground.fillColor = CustomColors.lightBlue()
+        needsBarBackground.strokeColor = BANNER_COLOR
+        needsBarBackground.fillColor = BANNER_COLOR
         needsBarBackground.position = CGPoint(x: size.width / 2, y: size.height)
         needsBarBackground.zPosition = 0
         needsBar.addChild(needsBarBackground)
         
         // Needs bar shadow
         let needsBarShadow = SKShapeNode(rectOfSize: CGSize(width: topHudElementWidth * 3 - 20, height: mainBackgroundHeight), cornerRadius: backgroundCornerRadius)
-        needsBarShadow.strokeColor = CustomColors.darkGray()
-        needsBarShadow.fillColor = CustomColors.darkGray()
-        needsBarShadow.position = CGPoint(x: size.width / 2 + 5, y: size.height - 4)
+        needsBarShadow.strokeColor = SHADOW_COLOR
+        needsBarShadow.fillColor = SHADOW_COLOR
+        needsBarShadow.position = needsBarBackground.position + SHADOW_OFFSET
         needsBarShadow.zPosition = -1
         needsBar.addChild(needsBarShadow)
         
@@ -112,8 +113,8 @@ class GameScene: SKScene {
         // Moves background
         let movesBackgroundWidth = topHudElementWidth // skip margin
         let movesBackground = SKShapeNode(rectOfSize: CGSize(width: movesBackgroundWidth, height: sideBackgroundHeight), cornerRadius: backgroundCornerRadius)
-        movesBackground.strokeColor = CustomColors.lightBlue()
-        movesBackground.fillColor = CustomColors.lightBlue()
+        movesBackground.strokeColor = BANNER_COLOR
+        movesBackground.fillColor = BANNER_COLOR
         movesBackground.position = CGPoint(x: movesBackgroundWidth / 2 + topHudMargin, y: size.height)
         movesBackground.zPosition = 0
         needsBar.addChild(movesBackground)
@@ -121,17 +122,17 @@ class GameScene: SKScene {
         // Moves shadow
         let movesShadowWidth = topHudElementWidth // skip margin
         let movesShadow = SKShapeNode(rectOfSize: CGSize(width: movesBackgroundWidth, height: sideBackgroundHeight), cornerRadius: backgroundCornerRadius)
-        movesShadow.strokeColor = CustomColors.darkGray()
-        movesShadow.fillColor = CustomColors.darkGray()
-        movesShadow.position = CGPoint(x: movesBackgroundWidth / 2 + topHudMargin + 5, y: size.height - 4)
+        movesShadow.strokeColor = SHADOW_COLOR
+        movesShadow.fillColor = SHADOW_COLOR
+        movesShadow.position = movesBackground.position + SHADOW_OFFSET
         movesShadow.zPosition = -1
         needsBar.addChild(movesShadow)
         
         // Moves Label background
         let movesLabelBackgroundWidth = topHudElementWidth - 10 // skip margin
         let movesLabelBackground = SKShapeNode(rectOfSize: CGSize(width: movesLabelBackgroundWidth, height: bannerBackgroundHeight), cornerRadius: backgroundCornerRadius)
-        movesLabelBackground.strokeColor = SKColorForPieceColorEnum(PieceColor.Blue)
-        movesLabelBackground.fillColor = SKColorForPieceColorEnum(PieceColor.Blue)
+        movesLabelBackground.strokeColor = BANNER_HEADER_COLOR
+        movesLabelBackground.fillColor = BANNER_HEADER_COLOR
         movesLabelBackground.position = CGPoint(x: movesBackgroundWidth / 2 + topHudMargin, y: size.height)
         movesLabelBackground.zPosition = 5
         needsBar.addChild(movesLabelBackground)
@@ -160,17 +161,17 @@ class GameScene: SKScene {
         // Menu background
         let menuBackgroundWidth = topHudElementWidth // skip margin
         let menuBackground = SKShapeNode(rectOfSize: CGSize(width: movesBackgroundWidth, height: sideBackgroundHeight), cornerRadius: backgroundCornerRadius)
-        menuBackground.strokeColor = CustomColors.lightBlue()
-        menuBackground.fillColor = CustomColors.lightBlue()
+        menuBackground.strokeColor = BANNER_COLOR
+        menuBackground.fillColor = BANNER_COLOR
         menuBackground.position = CGPoint(x: size.width - menuBackgroundWidth / 2 - topHudMargin - 5, y: size.height)
         menuBackground.zPosition = 0
         needsBar.addChild(menuBackground)
         
         // Menu shadow
         let menuShadow = SKShapeNode(rectOfSize: CGSize(width: movesBackgroundWidth, height: sideBackgroundHeight), cornerRadius: backgroundCornerRadius)
-        menuShadow.strokeColor = CustomColors.darkGray()
-        menuShadow.fillColor = CustomColors.darkGray()
-        menuShadow.position = CGPoint(x: size.width - menuBackgroundWidth / 2 - topHudMargin + 5 - 5, y: size.height - 4)
+        menuShadow.strokeColor = SHADOW_COLOR
+        menuShadow.fillColor = SHADOW_COLOR
+        menuShadow.position = menuBackground.position + SHADOW_OFFSET
         menuShadow.zPosition = -1
         needsBar.addChild(menuShadow)
         
@@ -204,16 +205,16 @@ class GameScene: SKScene {
         hudBottomLayer.addChild(hudBottomBackground)
         
         let restartBackground = SKShapeNode(rectOfSize: CGSize(width: 48, height: 48), cornerRadius: 5)
-        restartBackground.fillColor = CustomColors.lightBlue()
-        restartBackground.strokeColor = CustomColors.lightBlue()
+        restartBackground.fillColor = BANNER_COLOR
+        restartBackground.strokeColor = BANNER_COLOR
         restartBackground.position = CGPoint(x: size.width / 2, y: iAdSize + hudBottomHeight / 2)
         restartBackground.zPosition = 5
         hudBottomLayer.addChild(restartBackground)
         
         let restartShadow = SKShapeNode(rectOfSize: CGSize(width: 48, height: 48), cornerRadius: 5)
-        restartShadow.fillColor = CustomColors.darkGray()
-        restartShadow.strokeColor = CustomColors.darkGray()
-        restartShadow.position = CGPoint(x: size.width / 2 + 5, y: iAdSize + hudBottomHeight / 2 - 4)
+        restartShadow.fillColor = SHADOW_COLOR
+        restartShadow.strokeColor = SHADOW_COLOR
+        restartShadow.position = restartBackground.position + SHADOW_OFFSET
         restartShadow.zPosition = 0
         hudBottomLayer.addChild(restartShadow)
         
@@ -402,23 +403,23 @@ class GameScene: SKScene {
         }
         
         let boardBackground = SKShapeNode(rectOfSize: CGSize(width: boardWidth, height: boardWidth), cornerRadius: 5)
-        boardBackground.fillColor = CustomColors.lightBlue()
-        boardBackground.strokeColor = CustomColors.lightBlue()
+        boardBackground.fillColor = BANNER_COLOR
+        boardBackground.strokeColor = BANNER_COLOR
         boardBackground.position = CGPoint(x: size.width / 2, y: size.height / 2)
         boardBackground.zPosition = -1
         playArea.addChild(boardBackground)
         
         let levelBackground = SKShapeNode(rectOfSize: CGSize(width: boardWidth / 2, height: 60), cornerRadius: 5)
-        levelBackground.fillColor = CustomColors.lightBlue()
-        levelBackground.strokeColor = CustomColors.lightBlue()
+        levelBackground.fillColor = BANNER_COLOR
+        levelBackground.strokeColor = BANNER_COLOR
         levelBackground.position = CGPoint(x: size.width / 2, y: size.height / 2 + boardWidth / 2)
         levelBackground.zPosition = -1
         playArea.addChild(levelBackground)
         
         let levelShadow = SKShapeNode(rectOfSize: CGSize(width: boardWidth / 2, height: 60), cornerRadius: 5)
-        levelShadow.fillColor = CustomColors.darkGray()
-        levelShadow.strokeColor = CustomColors.darkGray()
-        levelShadow.position = CGPoint(x: size.width / 2 + 5, y: size.height / 2 + boardWidth / 2 - 4)
+        levelShadow.fillColor = SHADOW_COLOR
+        levelShadow.strokeColor = SHADOW_COLOR
+        levelShadow.position = levelBackground.position + SHADOW_OFFSET
         levelShadow.zPosition = -2
         playArea.addChild(levelShadow)
         
@@ -433,9 +434,9 @@ class GameScene: SKScene {
         playArea.addChild(levelLabel)
         
         let boardShadow = SKShapeNode(rectOfSize: CGSize(width: boardWidth, height: boardWidth), cornerRadius: 5)
-        boardShadow.fillColor = CustomColors.darkGray()
-        boardShadow.strokeColor = CustomColors.darkGray()
-        boardShadow.position = CGPoint(x: size.width / 2 + 5, y: size.height / 2 - 4)
+        boardShadow.fillColor = SHADOW_COLOR
+        boardShadow.strokeColor = SHADOW_COLOR
+        boardShadow.position = boardBackground.position + SHADOW_OFFSET
         boardShadow.zPosition = -2
         playArea.addChild(boardShadow)
     }
@@ -481,14 +482,17 @@ class GameScene: SKScene {
         }
     }
     
+    func levelOver(win: Bool) {
+        view?.presentScene(LevelEnd(size: view!.bounds.size, win: win))
+    }
+    
     func checkWinLoseConditions() {
         if EXPERIMENT_MODE {
             return
         }
         updateObjectives()
         if curLevel.checkWin() {
-            println("You win")
-            messageBox("You win!")
+            levelOver(true)
             noTouching = true
         }
         else if currentMoves == 0 {

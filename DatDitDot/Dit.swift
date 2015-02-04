@@ -2,31 +2,32 @@ import SpriteKit
 
 class Dit: BaseD {
     
-    let eye: SKShapeNode
-    let mouth: SKShapeNode
+    let eye: SKSpriteNode
+    let mouth: SKSpriteNode
     let eyeBlinkDelay: NSTimeInterval
     let eyeMoveDelay: NSTimeInterval
     
     init(sideLength: CGFloat, row: Int, col: Int, color: PieceColor, facialFeatures: Bool) {
-        let t = SKTexture(imageNamed: "triangle")
-        let background = SKSpriteNode(texture: t, size: CGSize(width: sideLength, height: sideLength))
+        let triangleTexture = SKTexture(imageNamed: "triangle")
+        let circleTexture = SKTexture(imageNamed: "circle_eye")
+        let mouthTexture = SKTexture(imageNamed: "mouth")
+        let background = SKSpriteNode(texture: triangleTexture, size: CGSize(width: sideLength, height: sideLength))
         
         let eyeSize = sideLength / 20
-        eye = SKShapeNode(circleOfRadius: eyeSize)
+        eye = SKSpriteNode(texture: circleTexture, size: CGSize(width: 7, height: 7))
         eyeBlinkDelay = NSTimeInterval(random(Range(start: 10, end: 20)))
         eyeMoveDelay = NSTimeInterval(random(Range(start: 2, end: 5)))
-        mouth = SKShapeNode(rect: CGRect(x: -sideLength / 8, y: -sideLength / 4, width: sideLength / 4, height: eyeSize / 4), cornerRadius: 1)
+        mouth = SKSpriteNode(texture: mouthTexture, size: CGSize(width: 15, height: 4))
         
         if facialFeatures {
-            eye.fillColor = CustomColors.darkGray()
-            eye.strokeColor = CustomColors.darkGray()
+            eye.colorBlendFactor = 1
+            eye.color = CustomColors.darkGray()
             eye.position = CGPoint(x: 0, y: sideLength / 6)
-            eye.zPosition = 100
+            eye.zPosition = 1
             
-
-
-            mouth.strokeColor = CustomColors.darkGray()
-            mouth.fillColor = CustomColors.darkGray()
+            mouth.colorBlendFactor = 1
+            mouth.color = CustomColors.darkGray()
+            mouth.position = CGPoint(x: 0, y: -10)
             mouth.zPosition = 1
         }
 

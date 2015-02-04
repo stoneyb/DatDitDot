@@ -1,5 +1,10 @@
 import SpriteKit
 
+// CONSTANTS
+let BANNER_HEADER_COLOR = SKColorForPieceColorEnum(PieceColor.Blue)
+let BANNER_COLOR = CustomColors.lightBlue()
+let SHADOW_COLOR = CustomColors.darkGray()
+
 enum PieceColor: Int {
     case Red = 0
     case Yellow = 1

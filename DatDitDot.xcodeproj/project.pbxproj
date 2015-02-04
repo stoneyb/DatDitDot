@@ -13,6 +13,9 @@
 		E2125E761A81D14600A940E1 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E751A81D14600A940E1 /* triangle.png */; };
 		E2125E841A82902E00A940E1 /* square_eye.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E831A82902E00A940E1 /* square_eye.png */; };
 		E2125E881A8298CC00A940E1 /* mouth.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E871A8298CC00A940E1 /* mouth.png */; };
+		E2125E8C1A829D8C00A940E1 /* circle_eye.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E8B1A829D8C00A940E1 /* circle_eye.png */; };
+		E2125E8E1A82CF2800A940E1 /* LevelEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2125E8D1A82CF2800A940E1 /* LevelEnd.swift */; };
+		E2125E901A82D1D000A940E1 /* large_round_rect.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E8F1A82D1D000A940E1 /* large_round_rect.png */; };
 		E21A4EE81A76E07D00398442 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4EE71A76E07D00398442 /* AppDelegate.swift */; };
 		E21A4EEC1A76E07E00398442 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4EEB1A76E07E00398442 /* GameScene.swift */; };
 		E21A4EEE1A76E07E00398442 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4EED1A76E07E00398442 /* GameViewController.swift */; };
@@ -80,6 +83,9 @@
 		E2125E751A81D14600A940E1 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
 		E2125E831A82902E00A940E1 /* square_eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_eye.png; sourceTree = "<group>"; };
 		E2125E871A8298CC00A940E1 /* mouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mouth.png; sourceTree = "<group>"; };
+		E2125E8B1A829D8C00A940E1 /* circle_eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_eye.png; sourceTree = "<group>"; };
+		E2125E8D1A82CF2800A940E1 /* LevelEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelEnd.swift; sourceTree = "<group>"; };
+		E2125E8F1A82D1D000A940E1 /* large_round_rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = large_round_rect.png; sourceTree = "<group>"; };
 		E21A4EE21A76E07D00398442 /* DatDitDot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatDitDot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21A4EE61A76E07D00398442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21A4EE71A76E07D00398442 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -257,6 +263,8 @@
 				E2125E831A82902E00A940E1 /* square_eye.png */,
 				E2F7BB401A818E6900DA377C /* refresh.png */,
 				E2125E871A8298CC00A940E1 /* mouth.png */,
+				E2125E8B1A829D8C00A940E1 /* circle_eye.png */,
+				E2125E8F1A82D1D000A940E1 /* large_round_rect.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -277,6 +285,7 @@
 			children = (
 				E21A4EEB1A76E07E00398442 /* GameScene.swift */,
 				E2EC49C21A7AB3D200C06522 /* MainMenu.swift */,
+				E2125E8D1A82CF2800A940E1 /* LevelEnd.swift */,
 			);
 			name = Scenes;
 			path = ..;
@@ -401,7 +410,9 @@
 				E2125E881A8298CC00A940E1 /* mouth.png in Resources */,
 				E2125E721A81CD3B00A940E1 /* square.png in Resources */,
 				E21A4EF61A76E07E00398442 /* LaunchScreen.xib in Resources */,
+				E2125E8C1A829D8C00A940E1 /* circle_eye.png in Resources */,
 				E2EC49C11A79B78700C06522 /* Quicksand_Bold.otf in Resources */,
+				E2125E901A82D1D000A940E1 /* large_round_rect.png in Resources */,
 				E2125E761A81D14600A940E1 /* triangle.png in Resources */,
 				E21A4EF31A76E07E00398442 /* Images.xcassets in Resources */,
 				E2125E841A82902E00A940E1 /* square_eye.png in Resources */,
@@ -450,6 +461,7 @@
 				E21A4EEE1A76E07E00398442 /* GameViewController.swift in Sources */,
 				E235B3881A7773D7009EFA74 /* Util.swift in Sources */,
 				E2F7BB3D1A808B6300DA377C /* CustomActions.swift in Sources */,
+				E2125E8E1A82CF2800A940E1 /* LevelEnd.swift in Sources */,
 				E2EC49D61A7ABF9E00C06522 /* Int+Extensions.swift in Sources */,
 				E21A4F0F1A76E45D00398442 /* Dat.swift in Sources */,
 				E2EC49D81A7ABF9E00C06522 /* SKAction+SpecialEffects.swift in Sources */,
