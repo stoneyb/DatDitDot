@@ -3,7 +3,7 @@ import SpriteKit
 // CONSTANTS
 let BANNER_HEADER_COLOR = SKColorForPieceColorEnum(PieceColor.Blue)
 let BANNER_COLOR = CustomColors.lightBlue()
-let SHADOW_COLOR = CustomColors.darkGray()
+let SHADOW_COLOR = CustomColors.lightGray()
 
 enum PieceColor: Int {
     case Red = 0
@@ -50,15 +50,14 @@ func stringForPieceColor(pieceColor: PieceColor) -> String {
     }
 }
 
-let darkGray = SKColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 1)
-let lightBlue  = SKColor(red: 0.6, green: 0.851, blue: 0.961, alpha: 1)
-
 class CustomColors {
     
     private struct STATIC {
         static let darkGray = SKColor(red: 0.33, green: 0.33, blue: 0.33, alpha: 1)
-        static let lightGray = SKColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        static let lightGray = SKColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
         static let lightBlue = SKColor(red: 0.6, green: 0.851, blue: 0.961, alpha: 1)
+        static let gold = SKColor(red: 1, green: 0.737, blue: 0, alpha: 1)
+        static let teal = SKColor(red: 0, green: 1, blue: 0.518, alpha: 1)
     }
     
     class func darkGray() -> SKColor {
@@ -71,6 +70,14 @@ class CustomColors {
     
     class func lightBlue() -> SKColor {
         return STATIC.lightBlue
+    }
+    
+    class func gold() -> SKColor {
+        return STATIC.gold
+    }
+    
+    class func teal() -> SKColor {
+        return STATIC.teal
     }
 }
 

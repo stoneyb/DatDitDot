@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 
 // CONSTANTS
-let SHADOW_OFFSET = CGPoint(x: 5, y: -4)
+let SHADOW_OFFSET = CGPoint(x: 0, y: -8)
 let PRIMARY_FONT_NAME = "Odin Rounded"
 
 enum GameState: Int {
