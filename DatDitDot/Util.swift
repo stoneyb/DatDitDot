@@ -3,6 +3,7 @@ import SpriteKit
 
 // CONSTANTS
 let SHADOW_OFFSET = CGPoint(x: 5, y: -4)
+let PRIMARY_FONT_NAME = "Odin Rounded"
 
 enum GameState: Int {
     case Running = 0

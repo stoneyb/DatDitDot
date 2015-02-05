@@ -61,8 +61,9 @@ class BaseD: SKNode {
     }
     
     func tapped() {
-        let newNode = createBaseDForType(self.type, self.background.frame.width / 2, self.color, false)
+        let newNode = createBaseDForType(self.type, self.background.frame.width, self.color, false)
         newNode.background.removeFromParent()
+        newNode.zPosition = 100
         addChild(newNode.background)
         newNode.background.runAction(SKAction.sequence([
                 SKAction.group([

@@ -7,7 +7,7 @@ class LevelEnd: SKScene {
         
         backgroundColor = SKColorForPieceColorEnum(PieceColor.Yellow)
         
-        let winLoseLabel = SKLabelNode(fontNamed: "Odin Rounded")
+        let winLoseLabel = SKLabelNode(fontNamed: PRIMARY_FONT_NAME)
         winLoseLabel.horizontalAlignmentMode = .Center
         winLoseLabel.verticalAlignmentMode = .Center
         winLoseLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
@@ -20,6 +20,13 @@ class LevelEnd: SKScene {
         }
         addChild(winLoseLabel)
         
+    }
+    
+    override func didMoveToView(view: SKView) {
+        
+        let moveEffect = SKTMoveEffect(node: self, duration: 1, startPosition: position, endPosition: position - CGPoint(x: -100, y: 0))
+        moveEffect.timingFunction = SKTTimingFunctionBackEaseIn
+        runAction(SKAction.actionWithEffect(moveEffect))
     }
 
     required init?(coder aDecoder: NSCoder) {

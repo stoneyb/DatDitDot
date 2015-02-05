@@ -82,7 +82,7 @@ class GameScene: SKScene {
         needsBar.addChild(needsLabelBackground)
         
         // Needs label
-        let needsLabel = SKLabelNode(fontNamed: "Odin Bold")
+        let needsLabel = SKLabelNode(fontNamed: PRIMARY_FONT_NAME)
         needsLabel.fontColor = SKColor.whiteColor()
         needsLabel.fontSize = 18
         needsLabel.horizontalAlignmentMode = .Center
@@ -483,7 +483,8 @@ class GameScene: SKScene {
     }
     
     func levelOver(win: Bool) {
-        view?.presentScene(LevelEnd(size: view!.bounds.size, win: win))
+        //let transition = SKTransition.moveInWithDirection(SKTransitionDirection.Left, duration: 1)
+        //view?.presentScene(LevelEnd(size: view!.bounds.size, win: win), transition: transition)
     }
     
     func checkWinLoseConditions() {
