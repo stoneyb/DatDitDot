@@ -6,6 +6,8 @@ class BaseD: SKNode {
     let col: Int
     let row: Int
     var type: PieceType
+    let mouth: SKSpriteNode
+    let mouthColor: SKColor
     
     init(background: SKSpriteNode, color: PieceColor, row: Int, col: Int){
         self.background = background
@@ -15,7 +17,11 @@ class BaseD: SKNode {
         self.col = col
         self.row = row
         self.type = .Unknown
-
+        
+        let mouthTexture = SKTexture(imageNamed: "mouth")
+        mouth = SKSpriteNode(texture: mouthTexture, size: CGSize(width: 10, height: 5))
+        mouthColor = SKColor.whiteColor()
+        
         super.init()
 
         addChild(background)
@@ -60,7 +66,36 @@ class BaseD: SKNode {
         fatalError("This method must be overridden")
     }
     
+    func shake() {
+        let shakeAction = SKAction.sequence([
+            SKAction.moveByX(2, y: 0, duration: 0.05),
+            SKAction.moveByX(-4, y: 0, duration: 0.025),
+            SKAction.moveByX(2, y: 0, duration: 0.05),
+            ])
+        runAction(SKAction.repeatAction(shakeAction, count: 2))
+    }
+    
+    func bounce() {
+        let moveEffectUp = SKTMoveEffect(node: self, duration: 0.1, startPosition: position, endPosition: position + CGPoint(x: 0, y: 10))
+        let moveEffectDown = SKTMoveEffect(node: self, duration: 0.4, startPosition: position, endPosition: position + CGPoint(x: 0, y: -10))
+        moveEffectDown.timingFunction = SKTTimingFunctionBounceEaseOut
+        mouth.texture = SKTexture(imageNamed: "circle_eye")
+        mouth.size = CGSize(width: 5, height: 5)
+        runAction(SKAction.sequence([
+            SKAction.actionWithEffect(moveEffectUp),
+            SKAction.actionWithEffect(moveEffectDown),
+            SKAction.waitForDuration(0.5),
+            SKAction.runBlock({
+                moveEffectUp.startPosition = moveEffectUp.previousPosition
+                moveEffectDown.startPosition = moveEffectDown.previousPosition
+                self.mouth.texture = SKTexture(imageNamed: "mouth")
+                self.mouth.size = CGSize(width: 10, height: 5)
+            })
+            ]))
+    }
+    
     func tapped() {
+        bounce()
         let newNode = createBaseDForType(self.type, self.background.frame.width, self.color, false)
         newNode.background.removeFromParent()
         newNode.zPosition = 100
@@ -73,5 +108,4 @@ class BaseD: SKNode {
                 SKAction.removeFromParent()
             ]))
     }
-    
 }

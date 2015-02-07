@@ -8,13 +8,12 @@ class RandomLevel: Level {
         self.number = 1337
         
         // Setup board
-        piecesHigh = Int(random(Range(start: 3, end: 6)))
-        piecesWide = piecesHigh
-        halfSideLength = 40.0
-        for row in 0..<piecesWide {
+        piecesHigh = Int(random(Range(start: 3, end: 5)))
+        piecesWide = Int(random(Range(start: 3, end: 5)))
+        for row in 0..<piecesHigh {
             var bRow = [BaseD]()
-            for col in 0..<piecesHigh {
-                bRow.append(randomDitDatDot(halfSideLength, row: row, col: col))
+            for col in 0..<piecesWide {
+                bRow.append(randomDitDatDot(sideLength, row: row, col: col))
             }
             board.append(bRow)
         }

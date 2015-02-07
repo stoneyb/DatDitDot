@@ -4,13 +4,13 @@ class GameScene: SKScene {
     
     let backgroundLayer = SKNode()
     let hudTopLayer = SKNode()
+    let bottomHud: BottomHud
     let needsBar = SKNode()
     let movesCount: SKLabelNode
     var currentMoves: Int
     let hudBottomLayer = SKNode()
     let playArea = SKNode()
-    var curLevelNum = 1
-    var curLevel: Level = Level.CreateLevel(1)
+    var curLevel: Level
     var restartingLevel: Bool = false
     var objectiveLabels = [PieceTypeColor: [ObjectiveLabel]]()
     var noTouching: Bool = false
@@ -20,11 +20,13 @@ class GameScene: SKScene {
     let topHudElementWidth: CGFloat
     let topHudHeight: CGFloat
     
+    // CONSTANTS
+    let BOT_HUD_HEIGHT: CGFloat = 100
     
     let EXPERIMENT_MODE = false
     
-    override init(size: CGSize) {
-        
+    init(size: CGSize, level: Level) {
+        self.curLevel = level
         backgroundLayer.zPosition = 10
         hudTopLayer.zPosition = 50
         hudBottomLayer.zPosition = 50
@@ -33,6 +35,8 @@ class GameScene: SKScene {
         topHudMargin = 5.0
         topHudElementWidth = (size.width - (topHudMargin * 4)) / 5
         topHudHeight = 100.0
+
+        bottomHud = BottomHud(hudHeight: BOT_HUD_HEIGHT)
         
         movesCount = SKLabelNode(fontNamed: "Odin Bold")
         currentMoves = 0
@@ -55,26 +59,33 @@ class GameScene: SKScene {
         if EXPERIMENT_MODE {
             loadLevel(RandomLevel())
         } else {
-            loadLevel(Level10())
+            loadLevel(self.curLevel)
         }
     }
     
     func setupBackground() {
         backgroundColor = SKColor.whiteColor()
         
+        let line = SKShapeNode(rectOfSize: CGSize(width: 1, height: size.height))
+        line.zPosition = 1000
+        line.fillColor = CustomColors.darkGray()
+        line.strokeColor = CustomColors.darkGray()
+        line.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        //addChild(line)
+        
         addChild(backgroundLayer)
     }
     
     func setupTopHud() {
         let sideBackgroundHeight: CGFloat = 140
-        let mainBackgroundHeight: CGFloat = 210
+        let mainBackgroundHeight: CGFloat = 225
         let bannerBackgroundHeight: CGFloat = 70
         let backgroundCornerRadius: CGFloat = 15
         let largeBannerTexture = SKTexture(imageNamed: "round_rect_200x200")
         let mediumBannerTextureTall = SKTexture(imageNamed: "round_rect_100x200")
         let mediumBannerTextureWide = SKTexture(imageNamed: "round_rect_200x100")
         
-        // Needs label background
+        // Needs label banner background
         let labelBackgroundWidth = topHudElementWidth * 2
         let needsLabelBackground = SKSpriteNode(texture: mediumBannerTextureWide, size: CGSize(width: labelBackgroundWidth, height: bannerBackgroundHeight))
         needsLabelBackground.colorBlendFactor = 1
@@ -94,16 +105,16 @@ class GameScene: SKScene {
         needsLabel.zPosition = 10
         needsBar.addChild(needsLabel)
         
-        // Needs bar
-        let needsBarBackground = SKSpriteNode(texture: largeBannerTexture, size: CGSize(width: topHudElementWidth * 3 - 20, height: mainBackgroundHeight))
+        // Needs background
+        let needsBarBackground = SKSpriteNode(texture: largeBannerTexture, size: CGSize(width: topHudElementWidth * 3, height: mainBackgroundHeight))
         needsBarBackground.colorBlendFactor = 1
         needsBarBackground.color = BANNER_COLOR
         needsBarBackground.position = CGPoint(x: size.width / 2, y: size.height)
         needsBarBackground.zPosition = 0
         needsBar.addChild(needsBarBackground)
         
-        // Needs bar shadow
-        let needsBarShadow = SKSpriteNode(texture: largeBannerTexture, size: CGSize(width: topHudElementWidth * 3 - 20, height: mainBackgroundHeight))
+        // Needs background shadow
+        let needsBarShadow = SKSpriteNode(texture: largeBannerTexture, size: CGSize(width: topHudElementWidth * 3, height: mainBackgroundHeight))
         needsBarShadow.colorBlendFactor = 1
         needsBarShadow.color = SHADOW_COLOR
         needsBarShadow.position = needsBarBackground.position + SHADOW_OFFSET
@@ -112,121 +123,54 @@ class GameScene: SKScene {
         
         hudTopLayer.addChild(needsBar)
         
-        // Moves background
-        let movesBackgroundWidth = topHudElementWidth // skip margin
-        let movesBackground = SKSpriteNode(texture: mediumBannerTextureTall, size: CGSize(width: movesBackgroundWidth, height: sideBackgroundHeight))
-        movesBackground.colorBlendFactor = 1
-        movesBackground.color = BANNER_COLOR
-        movesBackground.position = CGPoint(x: movesBackgroundWidth / 2 + topHudMargin, y: size.height)
-        movesBackground.zPosition = 0
-        needsBar.addChild(movesBackground)
-        
-        // Moves shadow
-        let movesShadow = SKSpriteNode(texture: mediumBannerTextureTall, size: CGSize(width: movesBackgroundWidth, height: sideBackgroundHeight))
-        movesShadow.colorBlendFactor = 1
-        movesShadow.color = SHADOW_COLOR
-        movesShadow.position = movesBackground.position + SHADOW_OFFSET
-        movesShadow.zPosition = -1
-        needsBar.addChild(movesShadow)
-        
-        // Moves Label background
-        let movesLabelBackgroundWidth = topHudElementWidth - 10 // skip margin
-        let movesLabelBackground = SKSpriteNode(texture: largeBannerTexture, size: CGSize(width: movesLabelBackgroundWidth, height: bannerBackgroundHeight))
-        movesLabelBackground.colorBlendFactor = 1
-        movesLabelBackground.color = BANNER_HEADER_COLOR
-        movesLabelBackground.position = CGPoint(x: movesBackgroundWidth / 2 + topHudMargin, y: size.height)
-        movesLabelBackground.zPosition = 5
-        needsBar.addChild(movesLabelBackground)
-
-        // Moves label
-        let movesLabel = SKLabelNode(fontNamed: "Odin Bold")
-        movesLabel.fontColor = SKColor.whiteColor()
-        movesLabel.fontSize = 18
-        movesLabel.horizontalAlignmentMode = .Center
-        movesLabel.verticalAlignmentMode = .Center
-        movesLabel.text = "MOVES"
-        movesLabel.position = CGPoint(x: movesBackgroundWidth / 2 + topHudMargin, y: size.height - bannerBackgroundHeight / 4)
-        movesLabel.zPosition = 10
-        needsBar.addChild(movesLabel)
+        // Moves
+        let moves = SKNode()
         
         // Moves count
         movesCount.fontColor = CustomColors.darkGray()
-        movesCount.fontSize = 24
+        movesCount.fontSize = 32
         movesCount.horizontalAlignmentMode = .Center
         movesCount.verticalAlignmentMode = .Center
         movesCount.text = "47"
-        movesCount.position = CGPoint(x: movesBackgroundWidth / 2 + topHudMargin, y: size.height - 3 * bannerBackgroundHeight / 4)
         movesCount.zPosition = 10
-        needsBar.addChild(movesCount)
+        movesCount.position = CGPoint(x: 25, y: 0)
+        moves.addChild(movesCount)
         
-        // Menu background
-        let menuBackgroundWidth = topHudElementWidth // skip margin
-        let menuBackground = SKSpriteNode(texture: mediumBannerTextureTall, size: CGSize(width: movesBackgroundWidth, height: sideBackgroundHeight))
-        menuBackground.colorBlendFactor = 1
-        menuBackground.color = BANNER_COLOR
-        menuBackground.position = CGPoint(x: size.width - menuBackgroundWidth / 2 - topHudMargin, y: size.height)
-        menuBackground.zPosition = 0
-        needsBar.addChild(menuBackground)
+        // Finger 
+        let finger = SKSpriteNode(imageNamed: "one_finger")
+        finger.size = CGSize(width: 27, height: 27)
+        finger.colorBlendFactor = 1
+        finger.color = CustomColors.darkGray()
+        finger.zPosition = 10
+        moves.addChild(finger)
+        let movesX: CGFloat = 8
+        moves.position = CGPoint(x: topHudElementWidth / 2 - movesX, y: size.height - 11 * mainBackgroundHeight / 32)
+        hudTopLayer.addChild(moves)
         
-        // Menu shadow
-        let menuShadow = SKSpriteNode(texture: mediumBannerTextureTall, size: CGSize(width: movesBackgroundWidth, height: sideBackgroundHeight))
-        menuShadow.colorBlendFactor = 1
-        menuShadow.color = SHADOW_COLOR
-        menuShadow.position = menuBackground.position + SHADOW_OFFSET
-        menuShadow.zPosition = -1
-        needsBar.addChild(menuShadow)
+        // Goals
+        let starSize: CGFloat = 10.0
+        let goals = Goals(level: curLevel, starSize: starSize)
+        goals.position = CGPoint(x: topHudElementWidth / 2 + starSize, y: size.height - mainBackgroundHeight / 7)
+        hudTopLayer.addChild(goals)
+
         
         // Menu
-        let menu = SKNode()
-        let menuColor = SKColor.whiteColor()
-        menu.name = "Menu"
-        menu.zPosition = 1
-        for i in 0..<4 {
-            let line = SKShapeNode(rectOfSize: CGSize(width: 35, height: 6), cornerRadius: 1)
-            line.fillColor = menuColor
-            line.strokeColor = menuColor
-            line.position = CGPoint(x: 0, y: 10 * CGFloat(i))
-            menu.addChild(line)
-        }
-        menu.position = CGPoint(x: size.width - menuBackgroundWidth / 2 - topHudMargin, y: size.height - 45)
-        menu.zPosition = 5
+        let menuColor = SKColorForPieceColorEnum(PieceColor.Purple)
+        let menuTexture = SKTexture(imageNamed: "grid_60x60")
+        let menu = SKSpriteNode(texture: menuTexture, size: CGSize(width: 40, height: 40))
+        menu.colorBlendFactor = 1
+        menu.color = menuColor
+        menu.position = CGPoint(x: size.width - topHudElementWidth / 2 - topHudMargin / 2, y: size.height - mainBackgroundHeight / 4)
         hudTopLayer.addChild(menu)
         
         addChild(hudTopLayer)
     }
     
     func setupBottomHud() {
-        let hudBottomHeight: CGFloat = 80
         let iAdSize: CGFloat = 50
-        let hudBottomBackgroundColor = SKColor.whiteColor()
-        let hudBottomBackgroundSize = CGSize(width: size.width, height: hudBottomHeight) // iAd size
-        let hudBottomBackground = SKSpriteNode(color: hudBottomBackgroundColor, size: hudBottomBackgroundSize)
-        hudBottomBackground.position = CGPoint(x: 0, y: iAdSize) // iAd size
-        hudBottomBackground.anchorPoint = CGPointZero
-        hudBottomLayer.addChild(hudBottomBackground)
-        
-        let restartBackground = SKShapeNode(rectOfSize: CGSize(width: 48, height: 48), cornerRadius: 5)
-        restartBackground.fillColor = BANNER_COLOR
-        restartBackground.strokeColor = BANNER_COLOR
-        restartBackground.position = CGPoint(x: size.width / 2, y: iAdSize + hudBottomHeight / 2)
-        restartBackground.zPosition = 5
-        hudBottomLayer.addChild(restartBackground)
-        
-        let restartShadow = SKShapeNode(rectOfSize: CGSize(width: 48, height: 48), cornerRadius: 5)
-        restartShadow.fillColor = SHADOW_COLOR
-        restartShadow.strokeColor = SHADOW_COLOR
-        restartShadow.position = restartBackground.position + SHADOW_OFFSET
-        restartShadow.zPosition = 0
-        hudBottomLayer.addChild(restartShadow)
-        
-        let restart = SKSpriteNode(imageNamed: "refresh")
-        restart.size = CGSize(width: 48, height: 48)
-        restart.color = SKColor.whiteColor()
-        restart.colorBlendFactor = 1.0
-        restart.position = CGPoint(x: size.width / 2, y: iAdSize + hudBottomHeight / 2)
-        restart.name = "Restart"
-        restart.zPosition = 10
-        hudBottomLayer.addChild(restart)
+
+        bottomHud.position = CGPoint(x: size.width / 2, y: iAdSize + BOT_HUD_HEIGHT / 2)
+        hudBottomLayer.addChild(bottomHud)
         
         addChild(hudBottomLayer)
     }
@@ -278,58 +222,58 @@ class GameScene: SKScene {
     
     func createObjectiveBar(objectives: [Objective]) {
         clearObjectiveLabels()
-        var halfPieces: CGFloat = CGFloat(objectives.count) / 2
-        var halfMargins: CGFloat = (CGFloat(objectives.count) - 1) / 2
-        var offset = 0
-        let staticOff: CGFloat = 50
+        let objectivesBar = SKNode()
+        var piecesWide: CGFloat = CGFloat(objectives.count)
+        var numMargins: CGFloat = CGFloat(objectives.count) - 1
+        let yOffset: CGFloat = 90
         let pieceMargin: CGFloat = 10
-        let widthOffset = topHudElementWidth + topHudMargin + pieceMargin + 10
+        let pieceWidth: CGFloat = 15
+        let needsBarBackground: CGFloat = topHudElementWidth * 3 - 20
         for objective in objectives {
             if objective.number > 3 {
-                halfPieces++
-                halfMargins++
+                piecesWide++
+                numMargins++
             }
         }
+        var curColumn: CGFloat = 0
+        let fullWidth = piecesWide * pieceWidth + numMargins * pieceMargin - pieceWidth // first one is centered
         for (i, objective) in enumerate(objectives) {
-            if objective.number > 3 { // split into two rows
+            if objective.number > 3 { // split into two columns
                 for k in 0..<3 {
-                    let objectiveLabel = ObjectiveLabel(type: objective.type, color: objective.color, number: objective.number)
-                    let pieceWidth: CGFloat = objectiveLabel.width
-                    let posX = widthOffset + pieceWidth * halfPieces - pieceMargin * halfMargins
-                    let posY = size.height - staticOff - (20 * CGFloat(k))
-                    objectiveLabel.position = CGPoint(x: posX + (pieceWidth + pieceMargin) * CGFloat(i + offset),
-                        y: posY)
-                    objectiveLabel.zPosition = 1
-                    hudTopLayer.addChild(objectiveLabel)
+                    let objectiveLabel = ObjectiveLabel(sideLength: pieceWidth, type: objective.type, color: objective.color, number: objective.number)
+                    let posX = (pieceWidth + pieceMargin) * curColumn
+                    let posY = 40 - 20 * CGFloat(k)
+                    objectiveLabel.position = CGPoint(x: posX, y: posY)
+                    objectiveLabel.zPosition = 2
+                    objectivesBar.addChild(objectiveLabel)
                     objectiveLabels[PieceTypeColor(type: objectiveLabel.type, color: objectiveLabel.color)]!.append(objectiveLabel)
                 }
-                offset++
+                curColumn++
                 for l in 0..<(objective.number - 3) {
-                    let objectiveLabel = ObjectiveLabel(type: objective.type, color: objective.color, number: objective.number)
-                    let pieceWidth: CGFloat = objectiveLabel.width
-                    let posX = widthOffset + pieceWidth * halfPieces - pieceMargin * halfMargins
-                    let posY = size.height - staticOff - (20 * CGFloat(l))
-                    objectiveLabel.position = CGPoint(x: posX + (pieceWidth + pieceMargin) * CGFloat(i + offset),
-                        y: posY)
-                    objectiveLabel.zPosition = 1
-                    hudTopLayer.addChild(objectiveLabel)
+                    let objectiveLabel = ObjectiveLabel(sideLength: pieceWidth, type: objective.type, color: objective.color, number: objective.number)
+                    let posX = (pieceWidth + pieceMargin) * curColumn
+                    let posY = 40 - 20 * CGFloat(l)
+                    objectiveLabel.position = CGPoint(x: posX, y: posY)
+                    objectiveLabel.zPosition = 2
+                    objectivesBar.addChild(objectiveLabel)
                     objectiveLabels[PieceTypeColor(type: objectiveLabel.type, color: objectiveLabel.color)]!.append(objectiveLabel)
                 }
             }
             else {
                 for j in 0..<objective.number {
-                    let objectiveLabel = ObjectiveLabel(type: objective.type, color: objective.color, number: objective.number)
-                    let pieceWidth: CGFloat = objectiveLabel.width
-                    let posX = widthOffset + pieceWidth * halfPieces - pieceMargin * halfMargins
-                    let posY = size.height - staticOff - (20 * CGFloat(j))
-                    objectiveLabel.position = CGPoint(x: posX + (pieceWidth + pieceMargin) * CGFloat(i + offset),
-                        y: posY)
-                    objectiveLabel.zPosition = 1
-                    hudTopLayer.addChild(objectiveLabel)
+                    let objectiveLabel = ObjectiveLabel(sideLength: pieceWidth, type: objective.type, color: objective.color, number: objective.number)
+                    let posX = (pieceWidth + pieceMargin) * curColumn
+                    let posY = 40 - 20 * CGFloat(j)
+                    objectiveLabel.position = CGPoint(x: posX, y: posY)
+                    objectiveLabel.zPosition = 2
+                    objectivesBar.addChild(objectiveLabel)
                     objectiveLabels[PieceTypeColor(type: objectiveLabel.type, color: objectiveLabel.color)]!.append(objectiveLabel)
                 }
             }
+            curColumn++
         }
+        objectivesBar.position = CGPoint(x: size.width / 2 - fullWidth / 2, y: size.height - yOffset)
+        hudTopLayer.addChild(objectivesBar)
     }
     
     func restartLevel() {
@@ -343,7 +287,7 @@ class GameScene: SKScene {
             if self.EXPERIMENT_MODE {
                 self.loadLevel(RandomLevel())
             } else {
-                self.loadLevel(Level.CreateLevel(++self.curLevelNum))
+                self.loadLevel(Level.CreateLevel(self.curLevel.number))
             }
             self.playArea.runAction(SKAction.actionWithEffect(moveInEffect), completion: {
                 self.restartingLevel = false
@@ -386,36 +330,55 @@ class GameScene: SKScene {
         currentMoves = level.moves
         createObjectiveBar(level.levelObjectives.objectives)
         updateObjectives()
+        var delay = 0.25
         let piecesWide = level.piecesWide
-        let pieceWidth: CGFloat = level.halfSideLength
-        let pieceMargin: CGFloat = 15.0
-        let boardWidth: CGFloat = CGFloat(piecesWide) * pieceWidth + (pieceMargin * (CGFloat(piecesWide) - 1)) + 15
-        let boardHeight: CGFloat = boardWidth
-        let halfPieces: CGFloat = CGFloat(piecesWide) / 2
-        let halfMargins: CGFloat = (CGFloat(piecesWide) - 1) / 2
-        let startPosX: CGFloat = size.width / 2 - pieceWidth * halfPieces - pieceMargin * halfMargins + pieceWidth / 2
-        let startPosY: CGFloat = size.height / 2 - pieceWidth * halfPieces - pieceMargin * halfMargins + pieceWidth / 2
-        for row in 0..<piecesWide {
+        let piecesHigh = level.piecesHigh
+        let pieceWidth: CGFloat = level.sideLength
+        let pieceMargin: CGFloat = 3.0
+        let levelBorder: CGFloat = 5.0
+        let boardWidth: CGFloat = CGFloat(piecesWide) * pieceWidth + (pieceMargin * (CGFloat(piecesWide) - 1)) + 5.0
+        let boardHeight: CGFloat = CGFloat(piecesHigh) * pieceWidth + (pieceMargin * (CGFloat(piecesHigh) - 1)) + 5.0
+        let halfPiecesWide: CGFloat = CGFloat(piecesWide) / 2
+        let halfMarginsWide: CGFloat = (CGFloat(piecesWide) - 1) / 2
+        let halfPiecesHigh: CGFloat = CGFloat(piecesHigh) / 2
+        let halfMarginsHigh: CGFloat = (CGFloat(piecesHigh) - 1) / 2
+        let startPosX: CGFloat = size.width / 2 - pieceWidth * halfPiecesWide - pieceMargin * halfMarginsWide + pieceWidth / 2
+        let startPosY: CGFloat = size.height / 2 - pieceWidth * halfPiecesHigh - pieceMargin * halfMarginsHigh + pieceWidth / 2
+        for row in 0..<piecesHigh {
             for col in 0..<piecesWide {
                 level.board[row][col].position = CGPoint(x: startPosX + (pieceWidth + pieceMargin) * CGFloat(col),
                                                          y: startPosY + (pieceWidth + pieceMargin) * CGFloat(row))
                 playArea.addChild(level.board[row][col])
+                level.board[row][col].runAction(SKAction.sequence([
+                    SKAction.waitForDuration(1.3),
+                    SKAction.waitForDuration(NSTimeInterval(CGFloat(Float(arc4random()) / Float(UINT32_MAX)))),
+                    SKAction.runBlock({
+                        level.board[row][col].bounce()
+                    })]))
+                delay += 0.1
             }
         }
         
-        let boardBackground = SKShapeNode(rectOfSize: CGSize(width: boardWidth, height: boardWidth), cornerRadius: 5)
-        boardBackground.fillColor = BANNER_COLOR
-        boardBackground.strokeColor = BANNER_COLOR
+        let boardBackground = SKShapeNode(rectOfSize: CGSize(width: boardWidth, height: boardHeight), cornerRadius: 5)
+        boardBackground.fillColor = BOARD_COLOR
+        boardBackground.strokeColor = BOARD_COLOR
         boardBackground.position = CGPoint(x: size.width / 2, y: size.height / 2)
         boardBackground.zPosition = -1
         playArea.addChild(boardBackground)
         
+        let boardShadow = SKShapeNode(rectOfSize: CGSize(width: boardWidth, height: boardHeight), cornerRadius: 5)
+        boardShadow.fillColor = SHADOW_COLOR
+        boardShadow.strokeColor = SHADOW_COLOR
+        boardShadow.position = boardBackground.position + SHADOW_OFFSET
+        boardShadow.zPosition = -2
+        playArea.addChild(boardShadow)
+        
         let levelLabelParent = SKNode()
         levelLabelParent.zPosition = -2
         
-        let levelBackground = SKShapeNode(rectOfSize: CGSize(width: boardWidth / 2, height: 60), cornerRadius: 5)
-        levelBackground.fillColor = BANNER_COLOR
-        levelBackground.strokeColor = BANNER_COLOR
+        let levelBackground = SKShapeNode(rectOfSize: CGSize(width: 3 * boardWidth / 4, height: 60), cornerRadius: 5)
+        levelBackground.fillColor = BOARD_COLOR
+        levelBackground.strokeColor = BOARD_COLOR
         levelBackground.zPosition = -3
         levelLabelParent.addChild(levelBackground)
         
@@ -436,22 +399,14 @@ class GameScene: SKScene {
         levelLabel.zPosition = -2
         levelLabelParent.addChild(levelLabel)
         
-        levelLabelParent.position = CGPoint(x: size.width / 2, y: size.height / 2 + boardWidth / 2 - 30)
+        levelLabelParent.position = CGPoint(x: size.width / 2, y: size.height / 2 + boardHeight / 2 - 30)
         playArea.addChild(levelLabelParent)
         let moveEffect = SKTMoveEffect(node: levelLabelParent, duration: 1, startPosition: levelLabelParent.position, endPosition: levelLabelParent.position + CGPoint(x: 0, y: 30))
         moveEffect.timingFunction = SKTTimingFunctionBackEaseOut
         levelLabelParent.runAction(SKAction.sequence([
-            SKAction.waitForDuration(1),
+            SKAction.waitForDuration(0.5),
             SKAction.actionWithEffect(moveEffect)
             ]))
-        
-        
-        let boardShadow = SKShapeNode(rectOfSize: CGSize(width: boardWidth, height: boardWidth), cornerRadius: 5)
-        boardShadow.fillColor = SHADOW_COLOR
-        boardShadow.strokeColor = SHADOW_COLOR
-        boardShadow.position = boardBackground.position + SHADOW_OFFSET
-        boardShadow.zPosition = -2
-        playArea.addChild(boardShadow)
     }
     
     func getCurrentObjectiveCount(key: PieceTypeColor) -> Int {
@@ -476,7 +431,6 @@ class GameScene: SKScene {
             if objDiff < 0 {
                 for label in labels {
                     if label.completed == false && objDiff < 0 {
-                        println("Add strikethrough")
                         label.addStrikeThrough()
                         objDiff++
                     }
@@ -484,7 +438,6 @@ class GameScene: SKScene {
             } else if objDiff > 0 {
                 for label in labels.reverse() {
                     if label.completed == true && objDiff > 0 {
-                        println("Add strikethrough")
                         label.removeStrikeThrough()
                         objDiff--
                     }
@@ -496,8 +449,24 @@ class GameScene: SKScene {
     }
     
     func levelOver(win: Bool) {
-        //let transition = SKTransition.moveInWithDirection(SKTransitionDirection.Left, duration: 1)
-        //view?.presentScene(LevelEnd(size: view!.bounds.size, win: win), transition: transition)
+        for row in 0..<self.curLevel.piecesHigh {
+            for col in 0..<self.curLevel.piecesWide {
+                self.curLevel.board[row][col].runAction(SKAction.repeatAction(SKAction.sequence([
+                    SKAction.waitForDuration(NSTimeInterval(CGFloat(Float(arc4random()) / Float(UINT32_MAX)))),
+                    SKAction.runBlock({
+                        self.curLevel.board[row][col].bounce()
+                        }),
+                    SKAction.waitForDuration(1)
+                    ]), count: 4))
+            }
+        }
+        runAction(SKAction.waitForDuration(5), completion: {
+                let transition = SKTransition.moveInWithDirection(SKTransitionDirection.Left, duration: 0.5)
+                self.view?.presentScene(LevelEnd(size: self.view!.bounds.size, level: self.curLevel, win: win), transition: transition)
+        })
+        
+        
+
     }
     
     func checkWinLoseConditions() {
@@ -539,29 +508,61 @@ class GameScene: SKScene {
         var node: SKNode? = playArea.nodeAtPoint(loc)
         if let piece = node?.parent? as? BaseD {
             var changed = false
-            piece.tapped()
             for position in piece.getNeighbors() {
-                if position.row >= 0 && position.row < curLevel.piecesWide &&
-                    position.col >= 0 && position.col < curLevel.piecesHigh {
+                if position.row >= 0 && position.row < curLevel.piecesHigh &&
+                    position.col >= 0 && position.col < curLevel.piecesWide {
                         if curLevel.board[position.row][position.col].changeColor(piece.color) {
                             changed = true
                         }
                 }
             }
             if changed {
+                piece.tapped()
                 curLevel.currentState = curLevel.getCurrentState()
                 moved()
+            } else {
+                piece.shake()
             }
             checkWinLoseConditions()
+        }
+    }
+    
+    func handleRestartTouchUp(touch: UITouch) {
+        let loc = touch.locationInNode(hudBottomLayer)
+        var node: SKNode? = hudBottomLayer.nodeAtPoint(loc)
+        if node?.name == "Restart" && !restartingLevel{
+            restartingLevel = true
+            restartLevel()
+            bottomHud.restartButton.untapped()
         }
     }
     
     func handleRestartTouch(touch: UITouch) {
         let loc = touch.locationInNode(hudBottomLayer)
         var node: SKNode? = hudBottomLayer.nodeAtPoint(loc)
-        if node?.name == "Restart" && !restartingLevel{
-            restartingLevel = true
-            restartLevel()
+        if node?.name == "Restart" {
+            bottomHud.restartButton.tapped()
+        } else {
+            bottomHud.restartButton.untapped()
+        }
+    }
+    
+    func handleLeaderboardTouchUp(touch: UITouch) {
+        let loc = touch.locationInNode(hudBottomLayer)
+        var node: SKNode? = hudBottomLayer.nodeAtPoint(loc)
+        if node?.name == "Leaderboard" {
+            println("Tapped leaderboard")
+            bottomHud.leaderboardButton.untapped()
+        }
+    }
+    
+    func handleLeaderboardTouch(touch: UITouch) {
+        let loc = touch.locationInNode(hudBottomLayer)
+        var node: SKNode? = hudBottomLayer.nodeAtPoint(loc)
+        if node?.name == "Leaderboard" {
+            bottomHud.leaderboardButton.tapped()
+        } else {
+            bottomHud.leaderboardButton.untapped()
         }
     }
     
@@ -575,7 +576,21 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        
+        let touch = touches.anyObject() as UITouch
+        if noTouching {
+            return
+        }
+        handleRestartTouch(touch)
+        handleLeaderboardTouch(touch)
+    }
+    
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+        let touch = touches.anyObject() as UITouch
+        if noTouching {
+            return
+        }
+        handleRestartTouch(touch)
+        handleLeaderboardTouch(touch)
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
@@ -583,12 +598,12 @@ class GameScene: SKScene {
         
         // Can always hit menu
         handleMenuTouch(touch)
-        
         if noTouching {
             return
         }
         handlePieceTouch(touch)
-        handleRestartTouch(touch)
+        handleRestartTouchUp(touch)
+        handleLeaderboardTouchUp(touch)
     }
    
     override func update(currentTime: CFTimeInterval) {

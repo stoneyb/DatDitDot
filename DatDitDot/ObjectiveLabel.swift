@@ -5,16 +5,17 @@ class ObjectiveLabel: SKNode {
     let number: Int
     let color: PieceColor
     let type: PieceType
-    let pieceWidth: CGFloat = 20.0
+    let sideLength: CGFloat
     var completed: Bool = false
     let strikeThrough: SKShapeNode
     
-    init(type: PieceType, color: PieceColor, number: Int) {
+    init(sideLength: CGFloat, type: PieceType, color: PieceColor, number: Int) {
         self.number = number
         self.type = type
         self.color = color
-        self.baseD = createBaseDForType(type, pieceWidth, color, false)
-        strikeThrough = SKShapeNode(rectOfSize: CGSize(width: 3, height: 16))
+        self.sideLength = sideLength
+        self.baseD = createBaseDForType(type, sideLength, color, false)
+        strikeThrough = SKShapeNode(rectOfSize: CGSize(width: 3, height: 19))
         strikeThrough.fillColor = CustomColors.darkGray()
         strikeThrough.strokeColor = CustomColors.darkGray()
         strikeThrough.runAction(SKAction.rotateByAngle(π/4, duration: 0))
@@ -34,12 +35,6 @@ class ObjectiveLabel: SKNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    var width: CGFloat {
-        get {
-            return pieceWidth * 2
-        }
     }
     
     func removeStrikeThrough() {

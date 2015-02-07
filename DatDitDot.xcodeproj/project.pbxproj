@@ -7,18 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E2125E681A81A81B00A940E1 /* StaticShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2125E671A81A81B00A940E1 /* StaticShapeNode.swift */; };
-		E2125E721A81CD3B00A940E1 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E711A81CD3B00A940E1 /* square.png */; };
 		E2125E741A81CFE300A940E1 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E731A81CFE300A940E1 /* circle.png */; };
-		E2125E761A81D14600A940E1 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E751A81D14600A940E1 /* triangle.png */; };
 		E2125E841A82902E00A940E1 /* square_eye.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E831A82902E00A940E1 /* square_eye.png */; };
-		E2125E881A8298CC00A940E1 /* mouth.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E871A8298CC00A940E1 /* mouth.png */; };
 		E2125E8C1A829D8C00A940E1 /* circle_eye.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E8B1A829D8C00A940E1 /* circle_eye.png */; };
 		E2125E8E1A82CF2800A940E1 /* LevelEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2125E8D1A82CF2800A940E1 /* LevelEnd.swift */; };
 		E2125E941A830B5600A940E1 /* round_rect_200x200.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E931A830B5600A940E1 /* round_rect_200x200.png */; };
 		E2125E961A830CC800A940E1 /* round_rect_100x200.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E951A830CC800A940E1 /* round_rect_100x200.png */; };
 		E2125E981A830D6600A940E1 /* round_rect_200x100.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E971A830D6600A940E1 /* round_rect_200x100.png */; };
 		E2125E9A1A831B8400A940E1 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E991A831B8400A940E1 /* star.png */; };
+		E2125E9C1A84019400A940E1 /* rainbow_200x200.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E9B1A84019400A940E1 /* rainbow_200x200.png */; };
+		E2125EA01A84367D00A940E1 /* mouth.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125E9F1A84367D00A940E1 /* mouth.png */; };
+		E2125EA21A844A6C00A940E1 /* one_finger.png in Resources */ = {isa = PBXBuildFile; fileRef = E2125EA11A844A6C00A940E1 /* one_finger.png */; };
 		E21A4EE81A76E07D00398442 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4EE71A76E07D00398442 /* AppDelegate.swift */; };
 		E21A4EEC1A76E07E00398442 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4EEB1A76E07E00398442 /* GameScene.swift */; };
 		E21A4EEE1A76E07E00398442 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4EED1A76E07E00398442 /* GameViewController.swift */; };
@@ -35,12 +34,19 @@
 		E21A4F1E1A77271800398442 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4F1D1A77271800398442 /* Position.swift */; };
 		E21A4F201A772E1100398442 /* Objective.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4F1F1A772E1100398442 /* Objective.swift */; };
 		E21A4F221A772EF800398442 /* DUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A4F211A772EF800398442 /* DUtil.swift */; };
-		E235B3861A776C7B009EFA74 /* restart2.png in Resources */ = {isa = PBXBuildFile; fileRef = E235B3851A776C7B009EFA74 /* restart2.png */; };
+		E221DF2F1A85436200ECEDA1 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = E221DF2E1A85436200ECEDA1 /* triangle.png */; };
+		E221DF311A8543D900ECEDA1 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = E221DF301A8543D900ECEDA1 /* square.png */; };
+		E221DF331A85466400ECEDA1 /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = E221DF321A85466400ECEDA1 /* restart.png */; };
+		E221DF391A8551B300ECEDA1 /* leaderboard.png in Resources */ = {isa = PBXBuildFile; fileRef = E221DF381A8551B300ECEDA1 /* leaderboard.png */; };
+		E221DF3B1A855D0D00ECEDA1 /* Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221DF3A1A855D0C00ECEDA1 /* Goals.swift */; };
+		E221DF3D1A858E0A00ECEDA1 /* BottomHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221DF3C1A858E0A00ECEDA1 /* BottomHud.swift */; };
+		E221DF411A858ECA00ECEDA1 /* RestartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221DF401A858ECA00ECEDA1 /* RestartButton.swift */; };
+		E221DF431A858EEE00ECEDA1 /* LeaderboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221DF421A858EEE00ECEDA1 /* LeaderboardButton.swift */; };
+		E221DF451A859AA000ECEDA1 /* grid_60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = E221DF441A859AA000ECEDA1 /* grid_60x60.png */; };
 		E235B3881A7773D7009EFA74 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E235B3871A7773D7009EFA74 /* Util.swift */; };
 		E2EC49B21A78746200C06522 /* ObjectiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EC49B11A78746200C06522 /* ObjectiveLabel.swift */; };
 		E2EC49B41A799DF800C06522 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EC49B31A799DF700C06522 /* Level.swift */; };
 		E2EC49B61A799EC700C06522 /* LevelObjectives.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EC49B51A799EC700C06522 /* LevelObjectives.swift */; };
-		E2EC49B81A79A22900C06522 /* Moves.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EC49B71A79A22900C06522 /* Moves.swift */; };
 		E2EC49BA1A79AE4A00C06522 /* MessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EC49B91A79AE4A00C06522 /* MessageBox.swift */; };
 		E2EC49BF1A79B6FD00C06522 /* Quicksand_Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2EC49BE1A79B6FD00C06522 /* Quicksand_Book.otf */; };
 		E2EC49C11A79B78700C06522 /* Quicksand_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2EC49C01A79B78700C06522 /* Quicksand_Bold.otf */; };
@@ -65,7 +71,6 @@
 		E2F7BB391A7DA45100DA377C /* RandomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7BB381A7DA45100DA377C /* RandomLevel.swift */; };
 		E2F7BB3D1A808B6300DA377C /* CustomActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7BB3C1A808B6300DA377C /* CustomActions.swift */; };
 		E2F7BB3F1A81605500DA377C /* Odin Rounded - Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2F7BB3E1A81605400DA377C /* Odin Rounded - Bold.otf */; };
-		E2F7BB411A818E6900DA377C /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = E2F7BB401A818E6900DA377C /* refresh.png */; };
 		E2F7BB431A819E7100DA377C /* Level100.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7BB421A819E7100DA377C /* Level100.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,18 +85,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E2125E671A81A81B00A940E1 /* StaticShapeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticShapeNode.swift; sourceTree = "<group>"; };
-		E2125E711A81CD3B00A940E1 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
 		E2125E731A81CFE300A940E1 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
-		E2125E751A81D14600A940E1 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
 		E2125E831A82902E00A940E1 /* square_eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_eye.png; sourceTree = "<group>"; };
-		E2125E871A8298CC00A940E1 /* mouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mouth.png; sourceTree = "<group>"; };
 		E2125E8B1A829D8C00A940E1 /* circle_eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_eye.png; sourceTree = "<group>"; };
 		E2125E8D1A82CF2800A940E1 /* LevelEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelEnd.swift; sourceTree = "<group>"; };
 		E2125E931A830B5600A940E1 /* round_rect_200x200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round_rect_200x200.png; sourceTree = "<group>"; };
 		E2125E951A830CC800A940E1 /* round_rect_100x200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round_rect_100x200.png; sourceTree = "<group>"; };
 		E2125E971A830D6600A940E1 /* round_rect_200x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round_rect_200x100.png; sourceTree = "<group>"; };
 		E2125E991A831B8400A940E1 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		E2125E9B1A84019400A940E1 /* rainbow_200x200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainbow_200x200.png; sourceTree = "<group>"; };
+		E2125E9F1A84367D00A940E1 /* mouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mouth.png; sourceTree = "<group>"; };
+		E2125EA11A844A6C00A940E1 /* one_finger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = one_finger.png; sourceTree = "<group>"; };
 		E21A4EE21A76E07D00398442 /* DatDitDot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DatDitDot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21A4EE61A76E07D00398442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21A4EE71A76E07D00398442 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,12 +116,19 @@
 		E21A4F1D1A77271800398442 /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		E21A4F1F1A772E1100398442 /* Objective.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Objective.swift; sourceTree = "<group>"; };
 		E21A4F211A772EF800398442 /* DUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DUtil.swift; sourceTree = "<group>"; };
-		E235B3851A776C7B009EFA74 /* restart2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restart2.png; sourceTree = "<group>"; };
+		E221DF2E1A85436200ECEDA1 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
+		E221DF301A8543D900ECEDA1 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		E221DF321A85466400ECEDA1 /* restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restart.png; sourceTree = "<group>"; };
+		E221DF381A8551B300ECEDA1 /* leaderboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaderboard.png; sourceTree = "<group>"; };
+		E221DF3A1A855D0C00ECEDA1 /* Goals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goals.swift; sourceTree = "<group>"; };
+		E221DF3C1A858E0A00ECEDA1 /* BottomHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomHud.swift; sourceTree = "<group>"; };
+		E221DF401A858ECA00ECEDA1 /* RestartButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartButton.swift; sourceTree = "<group>"; };
+		E221DF421A858EEE00ECEDA1 /* LeaderboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardButton.swift; sourceTree = "<group>"; };
+		E221DF441A859AA000ECEDA1 /* grid_60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid_60x60.png; sourceTree = "<group>"; };
 		E235B3871A7773D7009EFA74 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		E2EC49B11A78746200C06522 /* ObjectiveLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveLabel.swift; sourceTree = "<group>"; };
 		E2EC49B31A799DF700C06522 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		E2EC49B51A799EC700C06522 /* LevelObjectives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelObjectives.swift; sourceTree = "<group>"; };
-		E2EC49B71A79A22900C06522 /* Moves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moves.swift; sourceTree = "<group>"; };
 		E2EC49B91A79AE4A00C06522 /* MessageBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBox.swift; sourceTree = "<group>"; };
 		E2EC49BE1A79B6FD00C06522 /* Quicksand_Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Book.otf; sourceTree = "<group>"; };
 		E2EC49C01A79B78700C06522 /* Quicksand_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Bold.otf; sourceTree = "<group>"; };
@@ -142,7 +153,6 @@
 		E2F7BB381A7DA45100DA377C /* RandomLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomLevel.swift; sourceTree = "<group>"; };
 		E2F7BB3C1A808B6300DA377C /* CustomActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActions.swift; sourceTree = "<group>"; };
 		E2F7BB3E1A81605400DA377C /* Odin Rounded - Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Odin Rounded - Bold.otf"; sourceTree = "<group>"; };
-		E2F7BB401A818E6900DA377C /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		E2F7BB421A819E7100DA377C /* Level100.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level100.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -229,16 +239,8 @@
 		E21A4F0B1A76E43E00398442 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				E21A4F0C1A76E44D00398442 /* Dit.swift */,
-				E21A4F0E1A76E45D00398442 /* Dat.swift */,
-				E21A4F101A76E46600398442 /* Dot.swift */,
-				E21A4F1B1A7703EC00398442 /* BaseD.swift */,
-				E21A4F1D1A77271800398442 /* Position.swift */,
-				E21A4F211A772EF800398442 /* DUtil.swift */,
-				E2EC49B11A78746200C06522 /* ObjectiveLabel.swift */,
-				E2EC49B71A79A22900C06522 /* Moves.swift */,
-				E2EC49B91A79AE4A00C06522 /* MessageBox.swift */,
-				E2125E671A81A81B00A940E1 /* StaticShapeNode.swift */,
+				E221DF3F1A858E9D00ECEDA1 /* Game Entities */,
+				E221DF3E1A858E8C00ECEDA1 /* UI Entities */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -262,20 +264,49 @@
 		E21A4F251A774E5E00398442 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				E235B3851A776C7B009EFA74 /* restart2.png */,
+				E2125E9B1A84019400A940E1 /* rainbow_200x200.png */,
 				E2125E731A81CFE300A940E1 /* circle.png */,
-				E2125E751A81D14600A940E1 /* triangle.png */,
-				E2125E711A81CD3B00A940E1 /* square.png */,
 				E2125E831A82902E00A940E1 /* square_eye.png */,
-				E2F7BB401A818E6900DA377C /* refresh.png */,
-				E2125E871A8298CC00A940E1 /* mouth.png */,
+				E221DF2E1A85436200ECEDA1 /* triangle.png */,
+				E221DF381A8551B300ECEDA1 /* leaderboard.png */,
+				E221DF321A85466400ECEDA1 /* restart.png */,
+				E221DF301A8543D900ECEDA1 /* square.png */,
+				E2125E9F1A84367D00A940E1 /* mouth.png */,
 				E2125E8B1A829D8C00A940E1 /* circle_eye.png */,
 				E2125E951A830CC800A940E1 /* round_rect_100x200.png */,
 				E2125E971A830D6600A940E1 /* round_rect_200x100.png */,
 				E2125E931A830B5600A940E1 /* round_rect_200x200.png */,
+				E221DF441A859AA000ECEDA1 /* grid_60x60.png */,
+				E2125EA11A844A6C00A940E1 /* one_finger.png */,
 				E2125E991A831B8400A940E1 /* star.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		E221DF3E1A858E8C00ECEDA1 /* UI Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E2EC49B11A78746200C06522 /* ObjectiveLabel.swift */,
+				E2EC49B91A79AE4A00C06522 /* MessageBox.swift */,
+				E221DF3C1A858E0A00ECEDA1 /* BottomHud.swift */,
+				E221DF3A1A855D0C00ECEDA1 /* Goals.swift */,
+				E221DF401A858ECA00ECEDA1 /* RestartButton.swift */,
+				E221DF421A858EEE00ECEDA1 /* LeaderboardButton.swift */,
+			);
+			name = "UI Entities";
+			sourceTree = "<group>";
+		};
+		E221DF3F1A858E9D00ECEDA1 /* Game Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E21A4F0C1A76E44D00398442 /* Dit.swift */,
+				E21A4F0E1A76E45D00398442 /* Dat.swift */,
+				E21A4F101A76E46600398442 /* Dot.swift */,
+				E21A4F1D1A77271800398442 /* Position.swift */,
+				E21A4F1B1A7703EC00398442 /* BaseD.swift */,
+				E21A4F211A772EF800398442 /* DUtil.swift */,
+			);
+			name = "Game Entities";
 			sourceTree = "<group>";
 		};
 		E2EC49BD1A79B55B00C06522 /* Fonts */ = {
@@ -414,23 +445,26 @@
 				E2F7BB3F1A81605500DA377C /* Odin Rounded - Bold.otf in Resources */,
 				E2125E9A1A831B8400A940E1 /* star.png in Resources */,
 				E2F7BB351A7C5AD300DA377C /* Quicksand SIL OFL License 1.1.txt in Resources */,
-				E235B3861A776C7B009EFA74 /* restart2.png in Resources */,
+				E2125EA21A844A6C00A940E1 /* one_finger.png in Resources */,
+				E221DF331A85466400ECEDA1 /* restart.png in Resources */,
+				E2125E9C1A84019400A940E1 /* rainbow_200x200.png in Resources */,
 				E2EC49BF1A79B6FD00C06522 /* Quicksand_Book.otf in Resources */,
 				E2EC49E01A7ABFA800C06522 /* LICENSE.txt in Resources */,
-				E2125E881A8298CC00A940E1 /* mouth.png in Resources */,
-				E2125E721A81CD3B00A940E1 /* square.png in Resources */,
 				E2125E981A830D6600A940E1 /* round_rect_200x100.png in Resources */,
 				E2125E961A830CC800A940E1 /* round_rect_100x200.png in Resources */,
+				E221DF451A859AA000ECEDA1 /* grid_60x60.png in Resources */,
+				E221DF311A8543D900ECEDA1 /* square.png in Resources */,
 				E21A4EF61A76E07E00398442 /* LaunchScreen.xib in Resources */,
+				E2125EA01A84367D00A940E1 /* mouth.png in Resources */,
 				E2125E8C1A829D8C00A940E1 /* circle_eye.png in Resources */,
 				E2EC49C11A79B78700C06522 /* Quicksand_Bold.otf in Resources */,
-				E2125E761A81D14600A940E1 /* triangle.png in Resources */,
 				E21A4EF31A76E07E00398442 /* Images.xcassets in Resources */,
 				E2125E841A82902E00A940E1 /* square_eye.png in Resources */,
+				E221DF391A8551B300ECEDA1 /* leaderboard.png in Resources */,
 				E2125E941A830B5600A940E1 /* round_rect_200x200.png in Resources */,
 				E21A4EF11A76E07E00398442 /* Main.storyboard in Resources */,
+				E221DF2F1A85436200ECEDA1 /* triangle.png in Resources */,
 				E2125E741A81CFE300A940E1 /* circle.png in Resources */,
-				E2F7BB411A818E6900DA377C /* refresh.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,13 +482,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E221DF3D1A858E0A00ECEDA1 /* BottomHud.swift in Sources */,
 				E21A4F1A1A77024100398442 /* Level1.swift in Sources */,
 				E21A4F201A772E1100398442 /* Objective.swift in Sources */,
 				E2F7BB431A819E7100DA377C /* Level100.swift in Sources */,
-				E2125E681A81A81B00A940E1 /* StaticShapeNode.swift in Sources */,
 				E21A4EEC1A76E07E00398442 /* GameScene.swift in Sources */,
 				E2EC49D71A7ABF9E00C06522 /* SKAction+Extensions.swift in Sources */,
-				E2EC49B81A79A22900C06522 /* Moves.swift in Sources */,
 				E2EC49DE1A7ABF9E00C06522 /* Vector3.swift in Sources */,
 				E2EC49D51A7ABF9E00C06522 /* CGVector+Extensions.swift in Sources */,
 				E2EC49B41A799DF800C06522 /* Level.swift in Sources */,
@@ -466,8 +499,10 @@
 				E2EC49C31A7AB3D200C06522 /* MainMenu.swift in Sources */,
 				E2EC49B61A799EC700C06522 /* LevelObjectives.swift in Sources */,
 				E2EC49DC1A7ABF9E00C06522 /* SKTEffects.swift in Sources */,
+				E221DF431A858EEE00ECEDA1 /* LeaderboardButton.swift in Sources */,
 				E21A4F1C1A7703EC00398442 /* BaseD.swift in Sources */,
 				E2EC49E21A7B102000C06522 /* Level2.swift in Sources */,
+				E221DF3B1A855D0D00ECEDA1 /* Goals.swift in Sources */,
 				E2F7BB331A7C411A00DA377C /* Level10.swift in Sources */,
 				E2EC49DD1A7ABF9E00C06522 /* SKTTimingFunctions.swift in Sources */,
 				E21A4EEE1A76E07E00398442 /* GameViewController.swift in Sources */,
@@ -479,6 +514,7 @@
 				E2EC49D81A7ABF9E00C06522 /* SKAction+SpecialEffects.swift in Sources */,
 				E21A4F221A772EF800398442 /* DUtil.swift in Sources */,
 				E21A4EE81A76E07D00398442 /* AppDelegate.swift in Sources */,
+				E221DF411A858ECA00ECEDA1 /* RestartButton.swift in Sources */,
 				E2F7BB391A7DA45100DA377C /* RandomLevel.swift in Sources */,
 				E21A4F1E1A77271800398442 /* Position.swift in Sources */,
 				E2EC49BA1A79AE4A00C06522 /* MessageBox.swift in Sources */,

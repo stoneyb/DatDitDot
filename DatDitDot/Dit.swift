@@ -3,39 +3,31 @@ import SpriteKit
 class Dit: BaseD {
     
     let eye: SKSpriteNode
-    let mouth: SKSpriteNode
     let eyeBlinkDelay: NSTimeInterval
     let eyeMoveDelay: NSTimeInterval
     
     init(sideLength: CGFloat, row: Int, col: Int, color: PieceColor, facialFeatures: Bool) {
         let triangleTexture = SKTexture(imageNamed: "triangle")
         let circleTexture = SKTexture(imageNamed: "circle_eye")
-        let mouthTexture = SKTexture(imageNamed: "mouth")
         let background = SKSpriteNode(texture: triangleTexture, size: CGSize(width: sideLength, height: sideLength))
         
-        let eyeSize = sideLength / 20
         eye = SKSpriteNode(texture: circleTexture, size: CGSize(width: 7, height: 7))
         eyeBlinkDelay = NSTimeInterval(random(Range(start: 10, end: 20)))
         eyeMoveDelay = NSTimeInterval(random(Range(start: 2, end: 5)))
-        mouth = SKSpriteNode(texture: mouthTexture, size: CGSize(width: 15, height: 4))
+
+        super.init(background: background, color: color, row: row, col: col)
         
         if facialFeatures {
             eye.colorBlendFactor = 1
             eye.color = CustomColors.darkGray()
-            eye.position = CGPoint(x: 0, y: sideLength / 6)
+            eye.position = CGPoint(x: 0, y: 0)
             eye.zPosition = 1
             
             mouth.colorBlendFactor = 1
-            mouth.color = CustomColors.darkGray()
+            mouth.color = mouthColor
             mouth.position = CGPoint(x: 0, y: -10)
             mouth.zPosition = 1
-        }
-
-        
-        
-        super.init(background: background, color: color, row: row, col: col)
-        
-        if facialFeatures {
+            
             addChild(eye)
             addChild(mouth)
             eyeMove()

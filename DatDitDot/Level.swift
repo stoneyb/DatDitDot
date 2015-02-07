@@ -8,8 +8,9 @@ class Level {
     var number: Int
     var board: [[BaseD]]
     var levelObjectives: LevelObjectives
-    var halfSideLength: CGFloat
+    var sideLength: CGFloat
     var currentState: [PieceTypeColor: Int]
+    var goals: [Int]
     
     init() {
         self.board = [[BaseD]]()
@@ -17,9 +18,10 @@ class Level {
         self.piecesWide = 0
         self.piecesHigh = 0
         self.moves = 0
-        self.halfSideLength = 0.0
+        self.sideLength = 60.0 // default
         self.number = 0
         self.currentState = [PieceTypeColor: Int]()
+        self.goals = [10, 20, 30]
     }
     
     func checkWin() -> Bool {

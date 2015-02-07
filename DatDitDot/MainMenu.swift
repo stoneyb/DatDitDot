@@ -54,7 +54,6 @@ class MainMenu: SKScene {
         let degrees: CGFloat = 65
         play.position = CGPoint(x: size.width / 2 - 40, y: size.height - heightOffset)
         play.runAction(SKAction.rotateByAngle(degrees.degreesToRadians(), duration: 0))
-        println(play.position)
         //addChild(play)
         
         
@@ -400,7 +399,7 @@ class MainMenu: SKScene {
         var node: SKNode? = nodeAtPoint(loc)
         if node?.name == "PlayButton" {
             //view?.presentScene(GameScene(size: view!.bounds.size))
-            view?.presentScene(GameScene(size: view!.bounds.size), transition: SKTransition.moveInWithDirection(SKTransitionDirection.Left, duration: 1.0))
+            view?.presentScene(GameScene(size: view!.bounds.size, level: Level.CreateLevel(1)), transition: SKTransition.moveInWithDirection(SKTransitionDirection.Left, duration: 1.0))
         }
     }
     

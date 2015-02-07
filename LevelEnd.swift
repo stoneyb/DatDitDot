@@ -2,7 +2,11 @@ import SpriteKit
 
 class LevelEnd: SKScene {
     
-    init(size: CGSize, win: Bool) {
+    let levelEnded: Level
+    
+    init(size: CGSize, level: Level, win: Bool) {
+        self.levelEnded = level
+        
         super.init(size: size)
         
         backgroundColor = SKColorForPieceColorEnum(PieceColor.Yellow)
@@ -23,14 +27,16 @@ class LevelEnd: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
-        
-        let moveEffect = SKTMoveEffect(node: self, duration: 1, startPosition: position, endPosition: position - CGPoint(x: -100, y: 0))
-        moveEffect.timingFunction = SKTTimingFunctionBackEaseIn
-        runAction(SKAction.actionWithEffect(moveEffect))
+    
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        let transition = SKTransition.moveInWithDirection(SKTransitionDirection.Left, duration: 0.5)
+        view?.presentScene(GameScene(size: view!.bounds.size, level: Level.CreateLevel(++self.levelEnded.number)), transition: transition)
     }
 
 }
